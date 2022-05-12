@@ -1,5 +1,6 @@
 import { BaseEntity } from "src/base-entity";
-import { Column, Entity } from "typeorm";
+import { CompanyEntity } from "src/companies/company.entity";
+import { Column, Entity, ManyToOne } from "typeorm";
 
 
 export class ProductModel {
@@ -17,5 +18,10 @@ export class ProductEntity extends BaseEntity {
 
     @Column({type: 'decimal', precision: 10, scale: 2, nullable: false})
     price: number;
+
+    @ManyToOne(type => CompanyEntity, company => company.products,{nullable: false})
+    company: string;
+
+    
 
 }
